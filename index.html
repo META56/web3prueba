@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Móvil y Escritorio con Grid y Pie de Página</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            display: grid;
+            grid-template-areas:
+                "header"
+                "hero"
+                "nav"
+                "main"
+                "footer";
+            grid-template-columns: 1fr;
+            grid-gap: 10px;
+            padding: 10px;
+            flex: 1;
+        }
+
+        header {
+            grid-area: header;
+            background: #333;
+            color: #fff;
+            padding: 1em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 400px; 
+        }
+
+        header h1 {
+            margin-bottom: 1em;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-form input {
+            padding: 0.5em;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            width: 70%;
+        }
+
+        .search-form button {
+            padding: 0.5em;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            background: #555;
+            color: #fff;
+        }
+
+        nav {
+            grid-area: nav;
+            background: #0000FF; 
+            padding: 0.5em;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0.5em 0;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav-footer {
+            color: #fff;
+            text-align: center;
+            padding: 1em 0 0 0; 
+            width: 100%;
+        }
+
+        .hero {
+            grid-area: hero;
+            background: #f4f4f4;
+            padding: 2em;
+            text-align: center;
+        }
+
+        main {
+            grid-area: main;
+            padding: 1em;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 20px;
+        }
+
+        main section {
+            text-align: center;
+            padding: 10px;
+        }
+
+        main img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+            max-width: 300px; 
+            border: 1px solid #000;
+        }
+
+        main h4 {
+            text-align: center; 
+        }
+
+        footer {
+            grid-area: footer;
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .img-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (min-width: 600px) {
+            .container {
+                grid-template-areas:
+                    "header header"
+                    "nav hero"
+                    "nav main"
+                    "footer footer";
+                grid-template-columns: 1fr 2fr;
+            }
+
+            nav ul {
+                text-align: left;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 0.5em 0;
+            }
+
+            .search-form {
+                position: relative;
+                justify-content: center;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                grid-template-areas:
+                    "header header header"
+                    "nav hero main"
+                    "footer footer footer";
+                grid-template-columns: 1fr 2fr 1fr;
+            }
+
+            .hero {
+                grid-column: span 2;
+                text-align: left;
+            }
+
+            main {
+                grid-column: span 2;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 1em;
+            }
+
+            main section:first-child {
+                grid-column: span 2; 
+            }
+
+            main img {
+                border: 1px solid #000;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Venta de notebook e insumos tecnológicos</h1>
+            <form class="search-form">
+                <input type="text" placeholder="Buscar...">
+                <button type="submit">Buscar</button>
+            </form>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Catálogo</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <div class="nav-footer">
+                <h1>Mejores Marcas</h1>
+                <h3>Acer</h3>
+                <h3>Dell</h3>
+                <h3>HP</h3>
+                <h3>Alienware</h3>
+                <h1><p>TODO LO QUE NECESITAS PARA TU COMPUTADOR</p></h1>
+                <h4><p>Celular de contacto: +56 900 680 789</p></h4>
+            </div>
+        </nav>
+        <section class="hero">
+            <h2>Lo último en tecnología hardware y más</h2>
+            <p>Todo en tecnología.</p>
+        </section>
+        <main>
+            <section>
+                <h2>Las mejores ofertas en tecnología</h2>
+                <p>Todo en computación</p>
+            </section>
+            <section class="img-section">
+                <img src="img/alie 3.jpg" alt="Notebook Alienware">
+                <h4>Notebook ideal para juego en línea</h4>
+            </section>
+            <section class="img-section">
+                <img src="img/notebook 2.jpeg" alt="Notebook Rosado">
+                <h4>Notebook diseñado para las chicas gamer</h4>
+            </section>
+            <section class="img-section">
+                <img src="img/notebook 4.jpg" alt="Notebook AMD RYZEN">
+                <h4>Notebook que da un máximo desempeño tanto en trabajos y juegos</h4>
+            </section>
+            <section class="img-section">
+                <img src="img/notebook 5.jpg" alt="Notebook Gamer">
+                <h4>Notebook con un diseño único, teclado iluminado</h4>
+            </section>
+            <section class="img-section">
+                <img src="img/notebook-dell-7390-touch-intel-core-i5-16gb-ram-256gb-ssd 1.jpg" alt="Notebook Dell">
+                <h4>Notebook ideal para un uso de trabajo profesional</h4>
+            </section>
+            <section class="img-section">
+                <img src="img/NOTEBOOK.jpeg" alt="Gamer">
+                <h4>Notebook a tu medida y necesidades</h4>
+            </section>
+        </main>
+        <footer>
+            <p>&copy; 2024 Mi Sitio Móvil</p>
+            <p>Dirección: Calle única, 123, Ciudad Ovalle, País Chile</p>
+            <p>Teléfono: +56 900 680 789</p>
+        </footer>
+    </div>
+</body>
+</html>
+
+
